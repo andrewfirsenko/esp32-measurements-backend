@@ -1,3 +1,3 @@
-# Backend for readings of ESP32 controller
+# Backend for measurements of ESP32 controller
 
 Swift Vapor applinaction
