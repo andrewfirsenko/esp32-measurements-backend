@@ -29,3 +29,6 @@ DerivedData/
 # Vapor specific
 .env
 Public/storage/
+
+# Docker images
+*.tar
