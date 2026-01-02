@@ -16,7 +16,7 @@ final class Measurement: Model, Content {
     @ID(key: .id)
     var id: UUID?
     @Field(key: "device_id")
-    var deviceID: String
+    var deviceId: String
     @Field(key: "date")
     var date: Double
     @OptionalField(key: "temperature")
@@ -30,13 +30,13 @@ final class Measurement: Model, Content {
     init() {}
     
     init(
-        deviceID: String,
+        deviceId: String,
         date: Double,
         temperature: Double?,
         humidity: Double?,
         pressure: Int?
     ) {
-        self.deviceID = deviceID
+        self.deviceId = deviceId
         self.date = date
         self.temperature = temperature
         self.humidity = humidity

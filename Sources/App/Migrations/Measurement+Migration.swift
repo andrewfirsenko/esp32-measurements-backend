@@ -10,7 +10,7 @@ import Fluent
 extension Measurement {
     struct Migration: AsyncMigration {
         func prepare(on database: any Database) async throws {
-            try await database.schema("measurements")
+            try await database.schema(Measurement.schema)
                 .id()
                 .field("device_id", .string, .required)
                 .field("date", .double, .required)
@@ -21,7 +21,7 @@ extension Measurement {
         }
         
         func revert(on database: any Database) async throws {
-            try await database.schema("measurements").delete()
+            try await database.schema(Measurement.schema).delete()
         }
     }
 }

@@ -9,15 +9,17 @@ import Vapor
 import FluentSQLiteDriver
 
 public func configure(_ app: Application) async throws {
-    app.databases.use(
-        .sqlite(
-            .file("esp32-measurements-db.sqlite")
-        ),
-        as: .sqlite
-    )
+    // DB
+    if app.environment.isRelease {
+        app.databases.use(.sqlite(.file("esp32-measurements-db.sqlite")), as: .sqlite)
+    } else {
+        app.databases.use(.sqlite(.memory), as: .sqlite)
+    }
     
+    // Migrations
     app.migrations.add(Measurement.Migration())
     try await app.autoMigrate()
     
+    // Routes
     try await routes(app)
 }
